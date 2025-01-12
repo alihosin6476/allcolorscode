@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض سينمائي ملون</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff5f6d, #ffc371); /* تدرج زاهي */
+            font-family: 'Arial', sans-serif;
+            color: #ffffff; /* لون النص */
+        }
+
+        .color-box {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.5s ease-in-out, box-shadow 0.3s, background-color 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .color-box::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .color-box:hover::before {
+            opacity: 1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: move 20s linear infinite;
+            filter: blur(15px);
+            z-index: 1;
+        }
+
+        @keyframes move {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100vh); }
+        }
+
+        .circle1 { width: 100px; height: 100px; background: rgba(255, 0, 0, 0.5); left: 10%; animation-duration: 25s; }
+        .circle2 { width: 150px; height: 150px; background: rgba(0, 255, 0, 0.5); left: 70%; animation-duration: 30s; }
+        .circle3 { width: 80px; height: 80px; background: rgba(0, 0, 255, 0.5); left: 40%; animation-duration: 20s; }
+
+        .color-gradient-box {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .button-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .toggle-button, .new-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            background: linear-gradient(135deg, #ff6a00, #ee0979); /* تدرج زاهي للأزرار */
+            color: #ffffff; /* لون النص في الأزرار */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .toggle-button:hover, .new-button:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #ee0979, #ff6a00); /* عكس التدرج عند التحويم */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        #colorCodes {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .color-code {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 0 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .color-code:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .color-label-custom {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ff5f6d, #ffc371); /* تدرج زاهي للنص */
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+   
+    <div class="color-box" id="colorBox"></div>
+    <div id="gradientBoxes" style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <div class="color-gradient-box" id="gradient1"></div>
+        <div class="color-gradient-box" id="gradient2"></div>
+        <div class="color-gradient-box" id="gradient3"></div>
+        <div class="color-gradient-box" id="gradient4"></div>
+        <div class="color-gradient-box" id="gradient5"></div>
+        <div class="color-gradient-box" id="gradient6"></div>
+        <div class="color-gradient-box" id="gradient7"></div>
+        <div class="color-gradient-box" id="gradient8"></div>
+        <div class="color-gradient-box" id="gradient9"></div>
+        <div class="color-gradient-box" id="gradient10"></div>
+        <div class="color-gradient-box" id="gradient11"></div>
+        <div class="color-gradient-box" id="gradient12"></div>
+        <div class="color-gradient-box" id="gradient13"></div>
+        <div class="color-gradient-box" id="gradient14"></div>
+        <div class="color-gradient-box" id="gradient15"></div>
+        <div class="color-gradient-box" id="gradient16"></div>
+        <div class="color-gradient-box" id="gradient17"></div>
+        <div class="color-gradient-box" id="gradient18"></div>
+        <div class="color-gradient-box" id="gradient19"></div>
+        <div class="color-gradient-box" id="gradient20"></div>
+    </div>
+   
+    <div class="color-label color-label-custom">Color Code</div>
+    <div id="colorCodes">
+        <div class="color-code" id="decimalCode">255, 255, 255</div>
+        <div class="color-code" id="hexCode">#FFFFFF</div>
+    </div>
+   
+    <div class="button-container">
+        <button class="toggle-button" id="toggleColor">تغيير اللون</button>
+        <button class="new-button" id="newColorButton">تدرج لوني</button>
+    </div>
+
+    <script>
+        let currentColor;
+
+        function getRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            currentColor = `rgb(${r}, ${g}, ${b})`;
+            return {
+                rgb: currentColor,
+                hex: `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`
+            };
+        }
+
+        function changeColor() {
+            const colorInfo = getRandomColor();
+            document.getElementById('colorBox').style.backgroundColor = colorInfo.rgb;
+
+            document.getElementById('decimalCode').textContent = `${colorInfo.rgb.match(/\d+/g).join(', ')}`;
+            document.getElementById('hexCode').textContent = colorInfo.hex;
+
+            const gradientBoxes = document.querySelectorAll('.color-gradient-box');
+            gradientBoxes.forEach((box, index) => {
+                const newColor = `rgb(${Math.min(255, colorInfo.rgb.match(/\d+/g).map(Number)[0] + index * 12)},
+                                     ${Math.min(255, colorInfo.rgb.match(/\d+/g).map(Number)[1] + index * 12)},
+                                     ${Math.min(255, colorInfo.rgb.match(/\d+/g).map(Number)[2] + index * 12)})`;
+
+                setTimeout(() => {
+                    box.style.transform = 'scale(0)';
+                    setTimeout(() => {
+                        box.style.backgroundColor = newColor;
+                        box.style.transform = 'scale(1)';
+
+                        box.onclick = function() {
+                            document.getElementById('colorBox').style.backgroundColor = newColor;
+                            document.getElementById('decimalCode').textContent = `${newColor.match(/\d+/g).join(', ')}`;
+                            document.getElementById('hexCode').textContent = `#${((1 << 24) + (newColor.match(/\d+/g).map(Number)[0] << 16) + (newColor.match(/\d+/g).map(Number)[1] << 8) + newColor.match(/\d+/g).map(Number)[2]).toString(16).slice(1).toUpperCase()}`;
+                        };
+                    }, 300);
+                }, index * 100);
+            });
+        }
+
+        document.getElementById('toggleColor').onclick = changeColor;
+        document.getElementById('newColorButton').onclick = function() {
+            const colorInfo = getRandomColor();
+            alert(`اللون الجديد هو: ${colorInfo.hex}`);
+        };
+
+        window.onload = changeColor;
+    </script>
+</body>
+</html>
